@@ -389,6 +389,7 @@ static void smallfelem_expand(felem out, const smallfelem in)
     out[3] = in[3];
 }
 
+#if !defined(ECASM_loongarch64)
 /*-
  * felem_shrink converts an felem into a smallfelem. The result isn't quite
  * minimal as the value may be greater than p.
@@ -713,6 +714,14 @@ static void smallfelem_square_reduced(felem out, const smallfelem small)
     smallfelem_square(tmp, small);
     felem_reduce(out, tmp);
 }
+#else
+static void smallfelem_mul(longfelem out, const smallfelem small1, const smallfelem small2);
+static void smallfelem_mul_reduced(felem out, const smallfelem small1, const smallfelem small2);
+static void smallfelem_square(longfelem out, const smallfelem small);
+static void smallfelem_square_reduced(felem out, const smallfelem small);
+static void felem_reduce(felem out, const longfelem in);
+static void felem_shrink(smallfelem out, const felem in);
+#endif
 
 /*-
  * felem_mul sets |out| = |in1| * |in2|
