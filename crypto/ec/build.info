@@ -21,8 +21,6 @@ IF[{- !$disabled{asm} -}]
   $ECASM_aarch64=ecp_nistz256.c ecp_nistz256-armv8.S
   $ECDEF_aarch64=ECP_NISTZ256_ASM
 
-  $ECASM_loongarch64=ecp_sm2p256.c ecp_sm2p256-loongarch64.s
-  $ECDEF_loongarch64=ECP_SM2P256_ASM
   $ECASM_ppc32=
   $ECASM_ppc64=ecp_nistz256.c ecp_ppc.c ecp_nistz256-ppc64.s x25519-ppc64.s
   $ECDEF_ppc64=ECP_NISTZ256_ASM X25519_ASM
@@ -59,6 +57,9 @@ ENDIF
 IF[{- !$disabled{sm2} -}]
   IF[{- !$disabled{'ec_sm2p_64_gcc_128'} -}]
     $COMMON=$COMMON ecp_sm2p256.c ecp_nistputil.c
+
+    $ECASM_loongarch64=ecp_sm2p256.c ecp_sm2p256-loongarch64.s
+    $ECDEF_loongarch64=ECP_SM2P256_ASM
   ENDIF
 ENDIF
 
