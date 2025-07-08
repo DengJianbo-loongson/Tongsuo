@@ -41,21 +41,20 @@ jobs:
         ]
     runs-on: ubuntu-latest
     steps:
-    - name: install LoongArch packages
-      if: matrix.platform.arch == 'loongarch64-linux-gnu'
+    - name: install specified version packages
+      if: matrix.platform.version != ''
       run: |
         sudo apt-get update
         sudo apt-get -yq --force-yes install \
             gcc-${{ matrix.platform.version }}-${{ matrix.platform.arch }} \
             ${{ matrix.platform.libs }}
-        sudo ls /usr/bin/loongarch64*
         sudo ln -s  /usr/bin/loongarch64-linux-gnu-gcc-${{ matrix.platform.version }} \
             /usr/bin/loongarch64-linux-gnu-gcc 
         sudo ln -s  /usr/bin/loongarch64-linux-gnu-g++-${{ matrix.platform.version }} \
             /usr/bin/loongarch64-linux-gnu-g++
 
     - name: install packages
-      if: matrix.platform.arch != 'loongarch64-linux-gnu'
+      if: matrix.platform.arch == ''
       run: |
         sudo apt-get update
         sudo apt-get -yq --force-yes install \
