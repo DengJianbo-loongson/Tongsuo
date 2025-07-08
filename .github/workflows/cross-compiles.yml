@@ -37,7 +37,6 @@ jobs:
             libs: libc6-dev-loong64-cross,
             version: 13,
             target: linux64-loongarch64,
-            tests: none
           }
         ]
     runs-on: ubuntu-latest
