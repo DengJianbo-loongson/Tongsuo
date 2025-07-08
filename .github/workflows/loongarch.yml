@@ -5,12 +5,12 @@
 # in the file LICENSE in the source distribution or at
 # https://www.openssl.org/source/license.html
 
-name: Cross Compile
+name: Cross Compile LoongArch64
 
 on: [pull_request, push]
 
 jobs:
-  cross-compilation:
+  cross-compilation-LoongArch64:
     strategy:
       fail-fast: false
       matrix:
@@ -50,11 +50,10 @@ jobs:
       - name: config with FIPS
         run: |
           ./config --banner=Configured --strict-warnings enable-fips \
-                   --cross-compile-prefix=${{ matrix.platform.arch }}- \
-                   ${{ matrix.platform.target }}
+                   --cross-compile-prefix="/opt/cross-tools/bin"
 
-    - name: config dump
-      run: ./configdata.pm --dump
+      - name: config dump
+        run: ./configdata.pm --dump
 
-    - name: make
-      run: make -s -j4
+      - name: make
+        run: make -s -j4
