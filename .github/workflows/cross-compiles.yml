@@ -59,13 +59,13 @@ jobs:
       if: matrix.platform.fips != 'no'
       run: |
         ./config --banner=Configured --strict-warnings enable-fips \
-                 --cross-compile-prefix=${{ matrix.platform.arch }}
+                 --cross-compile-prefix=${{ matrix.platform.arch }}-
 
     - name: config without FIPS
       if: matrix.platform.fips == 'no'
       run: |
         ./config --banner=Configured --strict-warnings enable-ntls \
-                 --cross-compile-prefix=${{ matrix.platform.arch }}
+                 --cross-compile-prefix=${{ matrix.platform.arch }}-
     - name: config dump
       run: ./configdata.pm --dump
 
