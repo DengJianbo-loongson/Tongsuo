@@ -54,7 +54,7 @@ jobs:
             /usr/bin/loongarch64-linux-gnu-g++
 
     - name: install packages
-      if: matrix.platform.arch == ''
+      if: matrix.platform.version == ''
       run: |
         sudo apt-get update
         sudo apt-get -yq --force-yes install \
