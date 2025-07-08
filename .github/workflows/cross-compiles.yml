@@ -51,7 +51,6 @@ jobs:
         sudo ls /usr/bin/loongarch64*
         sudo ln -s  /usr/bin/loongarch64-linux-gnu-gcc-13 /usr/bin/loongarch64-linux-gnu-gcc 
         sudo ln -s  /usr/bin/loongarch64-linux-gnu-g++-13 /usr/bin/loongarch64-linux-gnu-g++ 
-        sudo ln -s  /usr/bin/loongarch64-linux-gnu-as-13 /usr/bin/loongarch64-linux-gnu-as 
 
     - uses: actions/checkout@v2
 
